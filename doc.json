@@ -1,0 +1,266 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:9091",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "product-rest-controller",
+			"description": "Product Rest Controller"
+		}
+	],
+	"paths": {
+		"/prc/add": {
+			"post": {
+				"tags": [
+					"product-rest-controller"
+				],
+				"summary": "addProduct",
+				"operationId": "addProductUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "product",
+						"description": "product",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/prc/delete/{pid}": {
+			"delete": {
+				"tags": [
+					"product-rest-controller"
+				],
+				"summary": "deleteProduct",
+				"operationId": "deleteProductUsingDELETE",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "pid",
+						"in": "path",
+						"description": "pid",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			}
+		},
+		"/prc/product/{pid}": {
+			"get": {
+				"tags": [
+					"product-rest-controller"
+				],
+				"summary": "getProductById",
+				"operationId": "getProductByIdUsingGET",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "pid",
+						"in": "path",
+						"description": "pid",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/prc/products": {
+			"get": {
+				"tags": [
+					"product-rest-controller"
+				],
+				"summary": "getAllProducts",
+				"operationId": "getAllProductsUsingGET",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Product"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/prc/update": {
+			"put": {
+				"tags": [
+					"product-rest-controller"
+				],
+				"summary": "updateProduct",
+				"operationId": "updateProductUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "productId",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "productName",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "productPrice",
+						"in": "query",
+						"required": false,
+						"type": "number",
+						"format": "double"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Product": {
+			"type": "object",
+			"properties": {
+				"productId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"productName": {
+					"type": "string"
+				},
+				"productPrice": {
+					"type": "number",
+					"format": "double"
+				}
+			}
+		}
+	}
+}
